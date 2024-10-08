@@ -261,7 +261,7 @@ function Documenti() {
       >
         <List className="popover-list">
           {columns
-            .filter((column, index) => index >= 3 && column.field !== 'actions')
+            .filter((column, index) => index >= 2 && column.field !== 'actions')
             .map((column) => (
               <ListItem button key={column.field} className="popover-list-item" onClick={() => handleFilterClick(column)}>
                 <Checkbox
