@@ -2,31 +2,55 @@
   display: flex;
   background-color: #F2F2F2;
   min-height: 100vh;
+  font-family: 'Wotfard', sans-serif;
+}
+
+.Drawer {
+  width: 160px; /* Larghezza fissa per la sidebar */
+  flex-shrink: 0;
+  z-index: 1;
 }
 
 .App-main {
   flex-grow: 1;
-  padding: 32px;
-  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  overflow: hidden; /* Evita lo scroll */
+  height: 100vh;
 }
 
 .App-title {
   font-size: 1.2rem;
-  margin-bottom: 16px;
+  margin-bottom: 4px;
+}
+
+.App-caption {
+  font-size: 0.9rem;
+  margin-bottom: 24px;
+  color: #666;
 }
 
 .App-header {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  justify-content: center;
+  justify-content: flex-start;
   width: 100%;
+}
+
+.Header-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .App-content {
   width: 100%;
   display: flex;
   justify-content: center;
+  flex-grow: 1;
 }
 
 .DataGrid-container {
@@ -35,7 +59,7 @@
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   width: 100%;
-  max-width: 1200px;
+  height: 100%;
   box-sizing: border-box;
 }
 
@@ -61,4 +85,64 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.MuiAppBar-root {
+  background-color: #E0E0E0;
+}
+
+.MuiTypography-h4 {
+  font-weight: bold;
+}
+
+.MuiButton-outlined {
+  border-color: #666;
+  color: #666;
+}
+
+/* Aggiungi questo stile per i blocchetti dei filtri */
+.filter-block {
+  display: flex;
+  align-items: center;
+  padding: 4px 12px; /* Padding interno */
+  border: 1px solid #ccc; /* Bordo */
+  border-radius: 8px; /* Angoli arrotondati */
+  margin-left: 8px; /* Margine a sinistra */
+  background-color: #fff; /* Sfondo bianco */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Ombra leggera */
+  height: auto;
+}
+
+.filter-block .MuiTypography-body2 {
+  margin-right: 8px; /* Margine a destra per il testo */
+}
+
+.filter-block .MuiIconButton-root {
+  padding: 4px; /* Padding per le icone */
+}
+
+/* Stile per il popover della lista dei filtri */
+.popover-list {
+  padding-top: 24px; /* Rimuovi il padding */
+  margin: 0; /* Rimuovi il margine */
+  background-color: white; /* Sfondo bianco */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /*Ombra leggera */
+  border-radius: 4px; /* Angoli arrotondati */
+}
+
+/* Stile per gli elementi della lista nel popover */
+.popover-list-item {
+  display: flex; /* Flexbox per allineare gli elementi */
+  align-items: center; /* Allinea verticalmente al centro */
+  padding: 8px 12px; /* Padding interno */
+  cursor: pointer; /* Cambia il cursore al passaggio del mouse */
+}
+
+.popover-list-item:hover {
+  background-color: #f0f0f0; /* Colore di sfondo al passaggio del mouse */
+}
+
+/* Stile per il checkbox nel popover */
+.popover-checkbox {
+  margin-right: 8px; /* Margine a destra per il checkbox */
 }
