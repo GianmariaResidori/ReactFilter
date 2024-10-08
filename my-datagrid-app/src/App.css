@@ -146,3 +146,45 @@
 .popover-checkbox {
   margin-right: 8px; /* Margine a destra per il checkbox */
 }
+
+.sidebar {
+  background-color: #0B416E; /* Colore di sfondo */
+  width: 86px; /* Larghezza fissa per la sidebar */
+  display: center;
+  flex-direction: column;
+  padding: 32px 0; /* Padding verticale */
+}
+
+.sidebar-item {
+  display: flex;
+  flex-direction: column; /* Disposizione verticale */
+  align-items: center; /* Allinea al centro */
+  color: white; /* Colore del testo */
+  text-decoration: none; /* Rimuovi sottolineatura */
+  position: center; /* Aggiunto per posizionare il cerchio */
+  width: 100%; /* Larghezza fissa per l'icona */
+  height: 82px; /* Altezza fissa per l'icona */
+}
+
+.sidebar-icon {
+  font-size: 76px; /* Aumenta la dimensione dell'icona */
+  width: 76px; /* Aggiorna la larghezza dell'icona */
+  height: 76px; /* Aggiorna l'altezza dell'icona */
+  position: center; /* Posizionamento relativo per il cerchio */
+  color: white;
+  margin-bottom: 16px; /* Aggiungi margine inferiore per la distanza dal testo */
+}
+
+.sidebar-icon.active::before {
+  content: ''; /* Crea un cerchio */
+  position: absolute; /* Posizionamento assoluto */
+  top: 50%; /* Centra verticalmente */
+  left: 50%; /* Centra orizzontalmente */
+  transform: translate(-50%, -50%); /* Centra il cerchio */
+  width: 72px; /* Dimensione del cerchio (più grande dell'icona) */
+  height: 72px; /* Dimensione del cerchio (più grande dell'icona) */
+  background-color: rgb(255, 255, 255); /* Sfondo del cerchio attivo */
+  border-radius: 50%; /* Angoli arrotondati per il cerchio */
+  z-index: -1; /* Mette il cerchio dietro l'icona */
+  border: 2px solid rgba(255, 255, 255, 0.5); /* Bordo del cerchio */
+}

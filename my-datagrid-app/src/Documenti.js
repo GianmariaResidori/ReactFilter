@@ -3,6 +3,10 @@ import Papa from 'papaparse';
 import './App.css';
 import { DataGrid } from '@mui/x-data-grid';
 import { Typography, TextField, Button, Box, Popover, List, ListItem, ListItemText, IconButton, Checkbox, MenuItem } from '@mui/material';
+import { Link } from 'react-router-dom'; // Assicurati di avere react-router-dom installato
+import HomeIcon from '@mui/icons-material/Home';
+import DescriptionIcon from '@mui/icons-material/Description';
+import SettingsIcon from '@mui/icons-material/Settings';
 import LinkIcon from '@mui/icons-material/Link';
 import AttachFileIcon from '@mui/icons-material/AttachFile';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
@@ -60,7 +64,6 @@ const columns = [
   },
 ];
 
-
 function Documenti() {
   const [rows, setRows] = useState([]);
   const [anchorEl, setAnchorEl] = useState(null);
@@ -69,6 +72,7 @@ function Documenti() {
   const [filterValue, setFilterValue] = useState('');
   const [currentOperator, setCurrentOperator] = useState('contains'); // Stato per l'operatore
   const filterRefs = useRef({});
+  // eslint-disable-next-line no-unused-vars
   const [popoverPosition, setPopoverPosition] = useState({ top: 0, left: 0 });
 
   useEffect(() => {
@@ -292,8 +296,9 @@ function Documenti() {
           sx={{
             marginTop: '4px',
           }}
+
         >
-          <Box padding={3} borderRadius={4} boxShadow={3}>
+          <Box padding={3} borderRadius={8} border={1} borderColor="white"> 
             <Typography variant="h6">Imposta Filtro</Typography>
             
             {/* Campo per scegliere l'operatore */}
@@ -331,7 +336,7 @@ function Documenti() {
           </Box>
         </Popover>
       )}
-    </div>
+      </div>
   );
 }
 
