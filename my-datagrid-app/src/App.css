@@ -98,7 +98,7 @@
 .MuiButton-outlined {
   border-color: #666;
   color: #666;
-  background-color: yellow; /* Cambiato il colore di sfondo del pulsante "Filtra" a giallo */
+  background-color: #0B416E; 
 }
 
 /* Aggiungi questo stile per i blocchetti dei filtri */
