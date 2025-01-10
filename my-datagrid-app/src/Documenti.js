@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import Papa from "papaparse";
 import "./App.css";
 import { DataGrid } from "@mui/x-data-grid";
-import { Typography, TextField, Button, Box, Popover, List, ListItem, ListItemText, IconButton, Checkbox, MenuItem, Modal } from "@mui/material";
+import { Typography, TextField, Button, Box, Popover, List, ListItem, ListItemText, IconButton, Checkbox, MenuItem, /*Modal*/ } from "@mui/material";
 import LinkIcon from "@mui/icons-material/Link";
 import AttachFileIcon from "@mui/icons-material/AttachFile";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
@@ -181,7 +181,7 @@ function Documenti() {
   };
 
   // Rimuovi selectedPdf dallo stato
-  const [selectedPdf, setSelectedPdf] = useState("/pdfs/document.pdf"); // Imposta il file statico
+  //const [selectedPdf, setSelectedPdf] = useState("/pdfs/document.pdf"); // Imposta il file statico
 
   // Funzione per aprire il PDF
   // const handleRowClick = () => {
