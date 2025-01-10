@@ -2,36 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Box, Typography, IconButton } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import { Document, Page, Text, View, StyleSheet, PDFViewer } from '@react-pdf/renderer';
 import Sidebar from './Sidebar';
-
-// Stili per la generazione del PDF
-const styles = StyleSheet.create({
-  page: {
-    flexDirection: 'column',
-    backgroundColor: '#E4E4E4',
-    padding: 20,
-  },
-  section: {
-    margin: 10,
-    padding: 10,
-    flexGrow: 1,
-  },
-});
-
-// Componente che definisce il contenuto del documento PDF
-const MyDocument = () => (
-  <Document>
-    <Page size="A4" style={styles.page}>
-      <View style={styles.section}>
-        <Text>Dettaglio Documento</Text>
-      </View>
-      <View style={styles.section}>
-        <Text>Questo è un esempio di PDF generato con @react-pdf/renderer.</Text>
-      </View>
-    </Page>
-  </Document>
-);
 
 function DettaglioDocumento() {
   const navigate = useNavigate(); // Hook per la navigazione tra pagine
@@ -46,7 +17,7 @@ function DettaglioDocumento() {
       <Sidebar /> {/* Componente per la barra laterale */}
       <Box padding={3} display="flex" flexDirection="column" flexGrow={1}>
         {/* Autolayout orizzontale */}
-        <Box display="flex" flexDirection="flex" alignItems="center" marginBottom={2}>
+        <Box display="flex" alignItems="center" marginBottom={2}>
           <IconButton onClick={handleBackClick}> {/* Pulsante per tornare indietro */}
             <ArrowBackIcon />
           </IconButton>
@@ -62,10 +33,14 @@ function DettaglioDocumento() {
           </Box>
         </Box>
 
-        {/* Viewer PDF aggiornato per occupare tutta la pagina in altezza */}
-        <PDFViewer style={{ width: '100%', height: 'calc(100vh - 100px)' }}>
-          <MyDocument />
-        </PDFViewer>
+        {/* Viewer PDF che carica il file statico dalla cartella public */}
+        <Box style={{ flexGrow: 1, height: '100%' }}>
+          <iframe
+            src={`${process.env.PUBLIC_URL}/document.pdf`}
+            title="Documento"
+            style={{ width: '100%', height: '100%', border: 'none' }}
+          />
+        </Box>
       </Box>
     </div>
   );
