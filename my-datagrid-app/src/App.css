@@ -128,7 +128,7 @@
   margin: 0; /* Rimuovi il margine */
   background-color: white; /* Sfondo bianco */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /*Ombra leggera */
-  border-radius: 4px; /* Angoli arrotondati */
+  border-radius: 24px; /* Angoli arrotondati */
 }
 
 /* Stile per gli elementi della lista nel popover */
@@ -173,18 +173,18 @@
   height: 76px; /* Aggiorna l'altezza dell'icona */
   position: center; /* Posizionamento relativo per il cerchio */
   color: white;
-  margin-bottom: 16px; /* Aggiungi margine inferiore per la distanza dal testo */
+  margin-bottom: 12px; /* Aggiungi margine inferiore per la distanza dal testo */
 }
 
 .sidebar-icon.active::before {
   content: ''; /* Crea un cerchio */
-  position: absolute; /* Posizionamento assoluto */
+  position: center; /* Posizionamento assoluto */
   top: 50%; /* Centra verticalmente */
   left: 50%; /* Centra orizzontalmente */
   transform: translate(-50%, -50%); /* Centra il cerchio */
   width: 72px; /* Dimensione del cerchio (più grande dell'icona) */
   height: 72px; /* Dimensione del cerchio (più grande dell'icona) */
-  background-color: rgb(255, 255, 255); /* Sfondo del cerchio attivo */
+  background-color: rgb(255, 0, 0); /* Sfondo del cerchio attivo */
   border-radius: 50%; /* Angoli arrotondati per il cerchio */
   z-index: -1; /* Mette il cerchio dietro l'icona */
   border: 2px solid rgba(255, 255, 255, 0.5); /* Bordo del cerchio */

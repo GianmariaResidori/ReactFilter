@@ -3,10 +3,6 @@ import Papa from 'papaparse';
 import './App.css';
 import { DataGrid } from '@mui/x-data-grid';
 import { Typography, TextField, Button, Box, Popover, List, ListItem, ListItemText, IconButton, Checkbox, MenuItem } from '@mui/material';
-import { Link } from 'react-router-dom'; // Assicurati di avere react-router-dom installato
-import HomeIcon from '@mui/icons-material/Home';
-import DescriptionIcon from '@mui/icons-material/Description';
-import SettingsIcon from '@mui/icons-material/Settings';
 import LinkIcon from '@mui/icons-material/Link';
 import AttachFileIcon from '@mui/icons-material/AttachFile';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
@@ -14,6 +10,8 @@ import SearchIcon from '@mui/icons-material/Search';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import ChevronDownIcon from '@mui/icons-material/ExpandMore';
 import CloseIcon from '@mui/icons-material/Close';
+import HeightIcon from '@mui/icons-material/Height';
+import { useNavigate } from 'react-router-dom';
 
 const operators = [
   { label: 'Contiene', value: 'contains' },
@@ -70,13 +68,13 @@ function Documenti() {
   const [filters, setFilters] = useState([]);
   const [currentFilter, setCurrentFilter] = useState(null);
   const [filterValue, setFilterValue] = useState('');
-  const [currentOperator, setCurrentOperator] = useState('contains'); // Stato per l'operatore
-  const filterRefs = useRef({});
-  // eslint-disable-next-line no-unused-vars
+  const [currentOperator, setCurrentOperator] = useState('contains');
   const [popoverPosition, setPopoverPosition] = useState({ top: 0, left: 0 });
+  const [rowHeight, setRowHeight] = useState(52);
+  const filterRefs = useRef({});
+  const navigate = useNavigate();
 
   useEffect(() => {
-    // Leggi il file CSV
     Papa.parse('/Data.csv', {
       download: true,
       header: true,
@@ -86,7 +84,7 @@ function Documenti() {
         } else {
           const dataWithId = results.data.map((row, index) => ({
             ...row,
-            id: index + 1, // Imposta un ID unico
+            id: index + 1,
           }));
           setRows(dataWithId);
         }
@@ -97,20 +95,8 @@ function Documenti() {
     });
   }, []);
 
-
   const handleOpen = (event) => {
     setAnchorEl(event.currentTarget);
-    
-    // Memorizza la posizione del pulsante "Filtra"
-    const buttonRect = event.currentTarget.getBoundingClientRect();
-
-    // Imposta la posizione del popover della lista dei filtri
-    const popoverPosition = { 
-      top: buttonRect.bottom + window.scrollY + 8, // Considera lo scroll della pagina
-      left: buttonRect.left
-    };
-
-    setPopoverPosition(popoverPosition);
   };
 
   const handleClose = () => {
@@ -126,15 +112,14 @@ function Documenti() {
       setCurrentFilter(column);
       setFilterValue('');
       setFilters([...filters, { field: column.field, value: '' }]);
-      setAnchorEl(null); // Chiudi il popover della lista
+      setAnchorEl(null);
 
-      // Aspetta che il blocchetto del filtro sia visibile prima di aprire il popover
       setTimeout(() => {
         if (filterRefs.current[column.field]) {
           const filterBlock = filterRefs.current[column.field];
           if (filterBlock) {
             const rect = filterBlock.getBoundingClientRect();
-            setPopoverPosition({ top: rect.bottom, left: rect.left });
+            setPopoverPosition({ top: rect.bottom + window.scrollY, left: rect.left });
           }
         }
       }, 0);
@@ -152,8 +137,8 @@ function Documenti() {
       ));
       setCurrentFilter(null);
       setFilterValue('');
-      setCurrentOperator('contains'); // Resetta l'operatore
-      handleClose(); // Chiudi il popover dopo aver applicato il filtro
+      setCurrentOperator('contains');
+      handleClose();
     }
   };
 
@@ -161,28 +146,45 @@ function Documenti() {
     setFilters(filters.filter(filter => filter.field !== field));
   };
 
+  const handleRowClick = (params) => {
+    console.log('Row clicked:', params);
+    navigate(`/documenti/${params.id}`);
+  };
+
   const open = Boolean(anchorEl);
 
   return (
     <div className="App-main">
       <Box padding={3} display="flex" flexDirection="column" flexGrow={1}>
-        <Typography variant="h6" color="inherit" noWrap>
+        <Typography variant="h7" color="#0B416E" noWrap>
           Archiva S.r.l.
         </Typography>
-        <Typography variant="h4" color="inherit" noWrap>
+        <Typography variant="h4" color="#0B416E" noWrap style={{ fontWeight: 'bold' }}>
           Fatture Rise
         </Typography>
         <Box display="flex" alignItems="center" marginBottom={2} marginTop={2} style={{ height: '36px' }}>
+          <IconButton onClick={() => setRowHeight(36)}>
+            <HeightIcon fontSize="small" />
+          </IconButton>
+          <IconButton onClick={() => setRowHeight(52)}>
+            <HeightIcon fontSize="medium" />
+          </IconButton>
           <TextField
             variant="outlined"
             size="small"
             placeholder="Cerca..."
             InputProps={{ startAdornment: <SearchIcon /> }}
+            style={{ marginLeft: 8, height: '40px' }}
           />
           <Button
             variant="outlined"
             startIcon={<FilterListIcon />}
-            style={{ marginLeft: 8, padding: '6px 12px' }}
+            style={{ 
+              marginLeft: 8, 
+              padding: '6px 12px', 
+              borderColor: '#0B416E',
+              color: '#0B416E'
+            }}
             onClick={handleOpen}
           >
             Filtra
@@ -209,23 +211,25 @@ function Documenti() {
           <DataGrid
             rows={rows.filter(row =>
               filters.every(filter => {
+                const cellValue = row[filter.field]?.toString().toLowerCase();
+                const filterValueLower = filter.value.toLowerCase();
                 switch (filter.operator) {
                   case 'contains':
-                    return row[filter.field].toString().includes(filter.value);
+                    return cellValue.includes(filterValueLower);
                   case 'notContains':
-                    return !row[filter.field].toString().includes(filter.value);
+                    return !cellValue.includes(filterValueLower);
                   case 'equals':
-                    return row[filter.field].toString() === filter.value;
+                    return cellValue === filterValueLower;
                   case 'notEquals':
-                    return row[filter.field].toString() !== filter.value;
+                    return cellValue !== filterValueLower;
                   case 'greaterThan':
-                    return row[filter.field] > filter.value;
+                    return parseFloat(cellValue) > parseFloat(filterValueLower);
                   case 'lessThan':
-                    return row[filter.field] < filter.value;
+                    return parseFloat(cellValue) < parseFloat(filterValueLower);
                   case 'greaterThanOrEqual':
-                    return row[filter.field] >= filter.value;
+                    return parseFloat(cellValue) >= parseFloat(filterValueLower);
                   case 'lessThanOrEqual':
-                    return row[filter.field] <= filter.value;
+                    return parseFloat(cellValue) <= parseFloat(filterValueLower);
                   default:
                     return true;
                 }
@@ -243,6 +247,8 @@ function Documenti() {
               left: ['actions'],
               right: ['attach', 'link'],
             }}
+            rowHeight={rowHeight}
+            onRowClick={handleRowClick}
           />
         </div>
       </Box>
@@ -301,7 +307,6 @@ function Documenti() {
           <Box padding={3} borderRadius={8} border={1} borderColor="white"> 
             <Typography variant="h6">Imposta Filtro</Typography>
             
-            {/* Campo per scegliere l'operatore */}
             <TextField
               select
               fullWidth
@@ -319,7 +324,6 @@ function Documenti() {
               ))}
             </TextField>
 
-            {/* Campo per inserire il valore del filtro */}
             <TextField
               fullWidth
               variant="outlined"
@@ -336,7 +340,7 @@ function Documenti() {
           </Box>
         </Popover>
       )}
-      </div>
+    </div>
   );
 }
 
