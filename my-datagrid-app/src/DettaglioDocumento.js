@@ -5,6 +5,7 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { Document, Page, Text, View, StyleSheet, PDFViewer } from '@react-pdf/renderer';
 import Sidebar from './Sidebar';
 
+// Stili per la generazione del PDF
 const styles = StyleSheet.create({
   page: {
     flexDirection: 'column',
@@ -18,6 +19,7 @@ const styles = StyleSheet.create({
   },
 });
 
+// Componente che definisce il contenuto del documento PDF
 const MyDocument = () => (
   <Document>
     <Page size="A4" style={styles.page}>
@@ -32,25 +34,36 @@ const MyDocument = () => (
 );
 
 function DettaglioDocumento() {
-  const navigate = useNavigate();
+  const navigate = useNavigate(); // Hook per la navigazione tra pagine
 
+  // Funzione per gestire il click sul pulsante "Indietro"
   const handleBackClick = () => {
-    navigate('/documenti');
+    navigate('/documenti'); // Naviga alla pagina precedente
   };
 
   return (
-    <div className="App-main">
-      <Sidebar />
+    <div className="App-main" style={{ height: '100vh', display: 'flex', flexDirection: 'column' }}>
+      <Sidebar /> {/* Componente per la barra laterale */}
       <Box padding={3} display="flex" flexDirection="column" flexGrow={1}>
-        <Box display="flex" alignItems="center" marginBottom={2}>
-          <IconButton onClick={handleBackClick}>
+        {/* Autolayout orizzontale */}
+        <Box display="flex" flexDirection="flex" alignItems="center" marginBottom={2}>
+          <IconButton onClick={handleBackClick}> {/* Pulsante per tornare indietro */}
             <ArrowBackIcon />
           </IconButton>
-          <Typography variant="h4" style={{ fontWeight: 'bold', marginLeft: 8 }}>
-            Dettaglio Documento
-          </Typography>
+
+          {/* Autolayout verticale */}
+          <Box display="flex" flexDirection="column" marginLeft={2}>
+            <Typography variant="h7" color="#0B416E" noWrap>
+              Documenti - Fatture Rise
+            </Typography>
+            <Typography variant="h4" color="#0B416E" noWrap style={{ fontWeight: 'bold' }}>
+              Documento
+            </Typography>
+          </Box>
         </Box>
-        <PDFViewer style={{ width: '100%', height: '750px' }}>
+
+        {/* Viewer PDF aggiornato per occupare tutta la pagina in altezza */}
+        <PDFViewer style={{ width: '100%', height: 'calc(100vh - 100px)' }}>
           <MyDocument />
         </PDFViewer>
       </Box>
@@ -58,4 +71,4 @@ function DettaglioDocumento() {
   );
 }
 
-export default DettaglioDocumento; 
+export default DettaglioDocumento;
