@@ -1,0 +1,31 @@
+.card-container {
+    /* Stile generale del contenitore */
+    border: 1px solid #C6CFDA;
+    border-radius: 12px;
+    background-color: #fff;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 12px;
+  }
+  
+  .card-header {
+    /* Header che contiene il titolo */
+    margin-bottom: 16px;
+  }
+  
+  .card-title {
+    /* Stile del titolo */
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+  }
+  
+  .card-content {
+    /* Contenitore del contenuto interno */
+    border: 1px solid #C6CFDA;
+    border-radius: 8px;
+    margin-top: 16px;
+    background-color: #F2F2F2;
+    padding: 12px;
+
+  }

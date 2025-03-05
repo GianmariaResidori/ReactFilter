@@ -1,0 +1,208 @@
+/* Contenitore principale del componente */
+.numeriche {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    background-color: #f5f5f5; /* sfondo neutro per l'intero componente */
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  /* Container che racchiude tutti i blocchi */
+  .numeriche .container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  /* Un frame per raggruppare le card in riga (o in wrap) */
+  .numeriche .frame {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-between;
+  }
+  
+  /* Card principale con sfondo bianco, ombreggiatura e padding */
+  .numeriche .formato-destinazione,
+  .numeriche .formato-destinazione-2,
+  .numeriche .formato-destinazione-3,
+  .numeriche .formato-destinazione-4,
+  .numeriche .formato-destinazione-5,
+  .numeriche .formato-destinazione-6 {
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    min-width: 250px;
+    flex: 1;
+    box-sizing: border-box;
+  }
+  
+  /* Stile per la sezione sinistra delle card (icone e label) */
+  .numeriche .left-content {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-right: 20px;
+  }
+  
+  /* Miglioramento tipografico del testo associato alle icone */
+  .numeriche .label {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+    vertical-align: middle;
+  }
+  
+  /* Aggiunte per ridurre le dimensioni delle icone a 16x16px e allinearle al testo */
+  .numeriche .info-icon,
+  .numeriche .left-content svg,
+  .numeriche .left-content .icon,
+  .numeriche .left-content img {
+    width: 16px;
+    height: 16px;
+    font-size: 16px; /* per icone basate su font */
+    vertical-align: middle; /* allinea verticalmente al testo */
+    margin-right: 4px; /* spaziatura con il testo */
+  }
+  
+  /* Contenitore del valore visualizzato con font più grande e contrasto */
+  .numeriche .value-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-left: auto;
+  }
+  
+  /* Linea verticale decorativa */
+  .numeriche .line {
+    width: 2px;
+    height: 40px;
+    background-color: #e0e0e0;
+  }
+  
+  /* Valore visualizzato con font più grande e contrasto */
+  .numeriche .value {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  /* Stili per il blocco secondario (usato in alcuni formati) */
+  .numeriche .frame-2,
+  .numeriche .frame-3 {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .numeriche .left-content-2 {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  
+  .numeriche .value-container-2 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  /* Stile per il testo in percentuale o numerico alternativo */
+  .numeriche .text-wrapper {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  /* Area destinata alla "data plot" */
+  .numeriche .data-plot-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+  
+  .numeriche .data-plot {
+    width: 70px;
+    height: 70px;
+    position: relative;
+  }
+  
+  /* Overlap group per eventuali grafici o cerchi decorativi */
+  .numeriche .overlap-group {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+  
+  /* Esempio di stile per gli elementi circolari */
+  .numeriche .circle {
+    border-radius: 50%;
+  }
+  
+  /* Personalizzazione dei cerchi decorativi (da adattare secondo le necessità) */
+  .numeriche .ellipse {
+    position: absolute;
+    width: 36px;
+    height: 36px;
+    background-color: #4caf50;
+    top: 8px;
+    left: 32px;
+    border-radius: 50%;
+  }
+  
+  .numeriche .img {
+    position: absolute;
+    width: 55px;
+    height: 55px;
+    background-color: #2196f3;
+    top: 0;
+    left: 0;
+    border-radius: 50%;
+  }
+  
+  .numeriche .ellipse-2 {
+    position: absolute;
+    width: 31px;
+    height: 31px;
+    background-color: #ff9800;
+    top: 19px;
+    left: 19px;
+    border-radius: 50%;
+  }
+  
+  .numeriche .ellipse-3 {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    background-color: #9c27b0;
+    top: 8px;
+    left: 44px;
+    border-radius: 50%;
+  }
+  
+  .numeriche .ellipse-4 {
+    position: absolute;
+    width: 68px;
+    height: 68px;
+    background-color: #f44336;
+    top: 0;
+    left: 0;
+    border-radius: 50%;
+  }
+  
+  .numeriche .ellipse-5 {
+    position: absolute;
+    width: 14px;
+    height: 15px;
+    background-color: #3f51b5;
+    top: 8px;
+    left: 44px;
+    border-radius: 50%;
+  }

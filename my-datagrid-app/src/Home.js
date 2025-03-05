@@ -4,6 +4,8 @@ import { DataGrid } from '@mui/x-data-grid';
 import LinkIcon from '@mui/icons-material/Link';
 import AttachFileIcon from '@mui/icons-material/AttachFile';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
+import Numeriche from './Numeriche';
+import Card from './Card';
 
 function Home() {
   const columns = [
@@ -51,35 +53,43 @@ function Home() {
   ];
 
   return (
-    <div className="App-main">
-      <Box padding={3} display="flex" flexDirection="column" flexGrow={1}>
-        <Typography variant="h7" color="#0B416E" noWrap>
-          Archiva S.r.l.
-        </Typography>
-        <Typography variant="h4" color="#0B416E" noWrap style={{ fontWeight: 'bold' }}>
-          Home
-        </Typography>
-        <Box
-          sx={{
-            borderRadius: '8px',
-            border: '1px solid #ccc',
-            padding: 2,
-            flexGrow: 1,
-            marginTop: 2,
-            backgroundColor: 'white',
-            boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
-          }}
-        >
-          <DataGrid
-            rows={rows}
-            columns={columns}
-            pageSize={5}
-            rowsPerPageOptions={[5]}
-            disableSelectionOnClick
-          />
+    <>
+      <div className="App-main">
+        <Box padding={3} display="flex" flexDirection="column" flexGrow={1}>
+          <Typography variant="h7" color="#0B416E" noWrap>
+            Archiva S.r.l.
+          </Typography>
+          <Typography variant="h4" color="#0B416E" noWrap style={{ fontWeight: 'bold' }}>
+            Home
+          </Typography>
+          <Box
+            sx={{
+              borderRadius: '8px',
+              border: '1px solid #ccc',
+              padding: 2,
+              flexGrow: 1,
+              marginTop: 2,
+              backgroundColor: 'white',
+              boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+            }}
+          >
+            <DataGrid
+              rows={rows}
+              columns={columns}
+              pageSize={5}
+              rowsPerPageOptions={[5]}
+              disableSelectionOnClick
+            />
+          </Box>
         </Box>
-      </Box>
-    </div>
+      </div>
+      <div>
+        <Card/>
+      </div>
+      <div className="App">
+        <Numeriche />
+      </div>
+    </>
   );
 }
 
